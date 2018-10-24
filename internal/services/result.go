@@ -27,7 +27,7 @@ func NewResultService(conn *gorm.DB) *ResultService {
 }
 
 func (service *ResultService) CheckAnswer(c interfaces.Context) error {
-	var answers []domains.Result
+	var answers []domains.Answer
 	inputData := c.FormValue("input")
 
 	err := json.Unmarshal([]byte(inputData), &answers)

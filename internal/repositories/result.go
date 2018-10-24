@@ -18,20 +18,22 @@ func (repo *ResultRepository) Store(result domains.Result) (int, error) {
 	return result.ID, nil
 }
 
-func (repo *ResultRepository) Check(answer *domains.Result) (*domains.Result, error) {
-	p := domains.Problem{}
+func (repo *ResultRepository) Check(answer *domains.Answer) (*domains.Result, error) {
+	p := &domains.Problem{}
+	res := &domains.Result{}
 
-	err := repo.Conn.First(&p).Error
+	err := repo.Conn.First(p, answer.ProblemID).Error
 	if err != nil {
 		return nil, err
 	}
 
+	res.ProblemID = p.ID
 	if p.Answer == answer.Answer || p.Type == 3 {
-		answer.Result = 1
+		res.Result = true
 	} else {
-		answer.Result = 0
-		answer.Answer = p.Answer
+		res.Result = false
+		res.Answer = p.Answer
 	}
 
-	return answer, nil
+	return res, nil
 }

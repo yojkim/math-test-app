@@ -9,5 +9,5 @@ func main() {
 	// disconnect db connection when process is ended.
 	defer sqlite.Close()
 
-	infrastructures.Router.Start(":8080")
+	infrastructures.Router.Start(":3000")
 }

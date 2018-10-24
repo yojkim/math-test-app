@@ -9,7 +9,7 @@ type ResultController struct {
 	Repository interfaces.ResultRepository
 }
 
-func (ctl *ResultController) CheckAnswer(answers []domains.Result) ([]domains.Result, error) {
+func (ctl *ResultController) CheckAnswer(answers []domains.Answer) ([]domains.Result, error) {
 	results := make([]domains.Result, 0)
 	for _, answer := range answers {
 		result, err := ctl.Repository.Check(&answer)
