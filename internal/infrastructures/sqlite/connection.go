@@ -9,7 +9,7 @@ import (
 var db *gorm.DB
 
 func Connect() *gorm.DB {
-	db, err := gorm.Open("sqlite3", "math.db")
+	db, err := gorm.Open("sqlite3", "tmp/db/math.db")
 	if err != nil {
 		panic(err.Error())
 	}

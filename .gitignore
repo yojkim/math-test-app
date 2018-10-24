@@ -14,3 +14,9 @@
 .idea/
 
 vendor/
+
+math-test-app
+
+database.json
+
+tmp/db/math.db
