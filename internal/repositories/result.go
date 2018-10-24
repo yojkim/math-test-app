@@ -26,8 +26,7 @@ func (repo *ResultRepository) Check(answer *domains.Result) (*domains.Result, er
 		return nil, err
 	}
 
-	// todo : need to check picture case
-	if p.Answer == answer.Answer {
+	if p.Answer == answer.Answer || p.Type == 3 {
 		answer.Result = 1
 	} else {
 		answer.Result = 0
