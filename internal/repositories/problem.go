@@ -26,13 +26,6 @@ func (repo *ProblemRepository) FindAll() ([]domains.Problem, error) {
 		return nil, err
 	}
 
-	//n := len(p)
-	//problems := make([]domains.Problem, n)
-	//
-	//for idx, p := range p {
-	//	problems[idx] = p.bindToDomainData()
-	//}
-
 	return p, nil
 }
 
@@ -46,14 +39,3 @@ func (repo *ProblemRepository) FindById(id int) (*domains.Problem, error) {
 
 	return &p, nil
 }
-
-//func (p Problem) bindToDomainData() domains.Problem {
-//	problem := domains.Problem{
-//		ID:      int(p.Model.ID),
-//		Text:    p.Text,
-//		Type:    p.Type,
-//		Choices: p.Choices,
-//		Answer:  p.Choices,
-//	}
-//	return problem
-//}

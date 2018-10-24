@@ -4,6 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/yojkim/math-test-app/internal/domains"
+	"log"
 )
 
 var db *gorm.DB
@@ -11,7 +12,7 @@ var db *gorm.DB
 func Connect() *gorm.DB {
 	db, err := gorm.Open("sqlite3", "tmp/db/math.db")
 	if err != nil {
-		panic(err.Error())
+		log.Panicln(err.Error())
 	}
 
 	db.Table("problems").CreateTable(&domains.Problem{})

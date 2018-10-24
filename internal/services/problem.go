@@ -8,6 +8,7 @@ import (
 	"github.com/yojkim/math-test-app/internal/repositories"
 	"github.com/yojkim/math-test-app/internal/services/interfaces"
 	"github.com/yojkim/math-test-app/internal/viewmodels"
+	"log"
 	"net/http"
 )
 
@@ -28,6 +29,7 @@ func NewProblemService(conn *gorm.DB) *ProblemService {
 func (service *ProblemService) GetAllProblems(c interfaces.Context) error {
 	problems, err := service.Controller.GetAllProblems()
 	if err != nil {
+		log.Println(err.Error())
 		return err
 	}
 
@@ -50,10 +52,15 @@ func (service *ProblemService) CreateProblems(c interfaces.Context) error {
 	var problems []domains.Problem
 	inputData := c.FormValue("problems")
 
-	json.Unmarshal([]byte(inputData), &problems)
-
-	err := service.Controller.AddProblems(problems)
+	err := json.Unmarshal([]byte(inputData), &problems)
 	if err != nil {
+		log.Println(err.Error())
+		return err
+	}
+
+	err = service.Controller.AddProblems(problems)
+	if err != nil {
+		log.Println(err.Error())
 		return err
 	}
 

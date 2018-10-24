@@ -16,11 +16,6 @@ type ResultService struct {
 	Controller controllers.ResultController
 }
 
-//type answer struct {
-//	ID     int    `json:"id"`
-//	Answer string `json:"answer"`
-//}
-
 func NewResultService(conn *gorm.DB) *ResultService {
 	return &ResultService{
 		Controller: controllers.ResultController{
@@ -34,11 +29,12 @@ func NewResultService(conn *gorm.DB) *ResultService {
 func (service *ResultService) CheckAnswer(c interfaces.Context) error {
 	var answers []domains.Result
 	inputData := c.FormValue("input")
-	log.Println(inputData)
 
-	json.Unmarshal([]byte(inputData), &answers)
-
-	log.Println(answers)
+	err := json.Unmarshal([]byte(inputData), &answers)
+	if err != nil {
+		log.Println(err.Error())
+		return err
+	}
 
 	results, err := service.Controller.CheckAnswer(answers)
 	if err != nil {

@@ -13,6 +13,7 @@ func init() {
 	router := echo.New()
 
 	router.Use(middleware.CORSWithConfig(middleware.DefaultCORSConfig))
+	router.Use(middleware.Logger())
 
 	apiGroup := router.Group("/api")
 
@@ -21,6 +22,7 @@ func init() {
 	problemService := services.NewProblemService(conn)
 	resultService := services.NewResultService(conn)
 
+	// Problem
 	apiGroup.POST("/problems", func(c echo.Context) error {
 		return problemService.CreateProblems(c)
 	})
@@ -29,6 +31,7 @@ func init() {
 		return problemService.GetAllProblems(c)
 	})
 
+	// Result
 	apiGroup.POST("/submit", func(c echo.Context) error {
 		return resultService.CheckAnswer(c)
 	})
