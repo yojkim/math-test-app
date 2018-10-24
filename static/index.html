@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="./style.css">
+		<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="./app.js"></script>
+	</head>
+	<body>
+		<section class="main">
+			<section class="screen">
+				<div class="problem">
+				</div>
+
+				<aside class="main-result">
+				</aside>
+			</section>
+
+			<footer class="main-footer">
+				<button class="submit">제출</button>
+			</footer>
+		</section>
+
+		<section class="templates">
+			<div class="tmpl-problem-stub">
+				<span class="id"></span>.
+				<span class="problem-text"></span>
+
+				<div class="answer-user"></div>
+				<div class="answer-right"></div>
+			</div>
+
+			<div class="tmpl-answer-stub-choice">
+				<span class="label"></span>
+
+				<input type="radio" value="1" />
+				<span class="choice"></span>
+
+				<input type="radio" value="2" />
+				<span class="choice"></span>
+
+				<input type="radio" value="3" />
+				<span class="choice"></span>
+
+				<input type="radio" value="4" />
+				<span class="choice"></span>
+
+				<input type="radio" value="5" />
+				<span class="choice"></span>
+			</div>
+
+			<div class="tmpl-answer-stub-text">
+				<span class="label"></span>
+				
+				<input type="text" class="value" />
+			</div>
+
+			<div class="tmpl-answer-stub-draw">
+				<span class="label"></span>
+				
+				<canvas class="canvas"></canvas>
+			</div>
+
+			<div class="tmpl-result-stub">
+				<span class="id"></span>.
+				<span class="result"></span>
+			</div>
+		</section>
+
+		<script>
+			var app = new App($('.main'));
+		</script>
+	</body>
+</html>
